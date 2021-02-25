@@ -5,9 +5,14 @@ from flask_restful import Api, Resource, fields, marshal_with
 app = Flask(__name__)
 api = Api(app)
 
-
+users = {}
 
 todos = {}
+
+@app.route('/user', methods=['GET', 'PUT', 'POST', 'DELETE'])
+def getURL():
+    if request.method == 'POST':
+        user = r
 
 
 @app.route('/notes', methods=['GET', 'PUT', 'POST', 'DELETE'])
@@ -20,11 +25,11 @@ def getURL():
         return {id: data}
 
     if request.method == 'PUT':
-        id = request.form['id']
+        id1 = request.form['id']
         data = request.form['data']
-        print(id, data)
-        todos[id] = data
-        return {id: data}
+        print(id1, data)
+        todos[id1] = data
+        return {id1: data}
 
     if request.method == 'GET':
         return todos
