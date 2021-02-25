@@ -12,11 +12,18 @@ todos = {}
 @app.route('/user', methods=['GET', 'PUT', 'POST', 'DELETE'])
 def getURL():
     if request.method == 'POST':
-        user = r
+        users = input("Enter your Username: ")
+        return users
+
+    if request.method == 'DELETE':
+        username = request.form['id']
+        del users[username]
+        return users
+
 
 
 @app.route('/notes', methods=['GET', 'PUT', 'POST', 'DELETE'])
-def getURL():
+def getURL1():
     if request.method == 'POST':
         id = request.form['id']
         data = request.form['data']
