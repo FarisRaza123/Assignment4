@@ -12,12 +12,26 @@ todos = {}
 @app.route('/user', methods=['GET', 'PUT', 'POST', 'DELETE'])
 def getURL():
     if request.method == 'POST':
-        users = input("Enter your Username: ")
+        username = request.form['username']
+        password = request.form['password']
+        print(username, password)
+        users[username] = password
+        return {username: password}
+
+    if request.method == 'PUT':
+        username = request.form['username']
+        password = request.form['password']
+        print(username, password)
+        users[username] = password
+        return {username: password}
+
+    if request.method == 'GET':
         return users
 
     if request.method == 'DELETE':
-        username = request.form['id']
+        username = request.form['username']
         del users[username]
+        del users[password]
         return users
 
 
