@@ -5,9 +5,9 @@ from flask_restful import Api, Resource, fields, marshal_with
 app = Flask(__name__)
 api = Api(app)
 
-users = {}
 
-todos = {users: }
+
+todos = {users: {}}
 
 
 
@@ -17,24 +17,42 @@ def getURL1():
         username = request.form['username']
         id = request.form['id']
         data = request.form['data']
-        print(id, data)
-        todos[id] = data
+
+        usernotes = todos[username]
+
+        if usernotes is not None:
+            usernotes[id] = data
+        else
+            todos[username] = {id: data}
+
         return {id: data}
 
     if request.method == 'PUT':
-        id1 = request.form['id']
-        data = request.form['data']
-        print(id1, data)
-        todos[id1] = data
-        return {id1: data}
+        if request.method == 'POST':
+            username = request.form['username']
+            id = request.form['id']
+            data = request.form['data']
+
+            usernotes = todos[username]
+
+            if usernotes is not None:
+                usernotes[id] = data
+            else
+                todos[username] = {id: data}
+
+            return {id: data}
 
     if request.method == 'GET':
         return todos
 
     if request.method == 'DELETE':
+        username = request.form['username']
         id = request.form['id']
-        del todos[id]
-        return todos
+
+        if usernotes is not None:
+            del usernotes[id]
+
+        return {id: data}
 
 
 if __name__ == "__main__":
